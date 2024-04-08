@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-세엣
+세엣 이건 웹에서 바꾼거임
 </body>
 </html>
