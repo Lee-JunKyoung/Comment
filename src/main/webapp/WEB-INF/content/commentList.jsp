@@ -1,10 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Comment List</title>
+<script>
+    // 날짜를 특정 길이로 제한하는 함수
+    function limitCommentDate(commentDate, maxLength) {
+        return commentDate.substring(0, maxLength);
+    }
+</script>
 </head>
 <body>
 	<div>
@@ -14,7 +21,11 @@
 				<li class="comment_item" id="comment_item" data-comment_num="${comment.comment_num}" value="${comment.comment_num}">
 					<p class="writer">
 						<span class="name"> <c:out value="${comment.user_id}" /> 님
-						</span> <span><c:out value="${comment.comment_date}" /> </span>
+						</span> <span>
+                            <%-- 시간을 16자까지로 제한하여 표시 --%>
+                            <c:set var="shortenedDate" value="${fn:substring(comment.comment_date, 0, 16)}"/>
+                            <c:out value="${shortenedDate}" />
+                        </span>
 						<!-- 수정 버튼 -->
 						<input type="button" value="수정하기" class="edit_btn">
 						<!-- 삭제 버튼 -->
